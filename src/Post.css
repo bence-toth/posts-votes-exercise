@@ -1,0 +1,38 @@
+.post {
+  border: 1px solid gray;
+  padding: 0.5em;
+  margin-block: 1em;
+}
+
+.post h2 {
+  margin-bottom: 0.25em;
+}
+
+.post h2::first-letter {
+  text-transform: uppercase;
+}
+
+.post .by {
+  display: block;
+  margin-bottom: 1em;
+  font-size: 0.8em;
+}
+
+.post p {
+  margin-bottom: 1em;
+}
+
+.post p::first-letter {
+  text-transform: uppercase;
+}
+
+.post .votes {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.post .votes button {
+  padding: 0.25em;
+  cursor: pointer;
+}

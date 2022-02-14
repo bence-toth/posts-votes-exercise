@@ -1,3 +1,5 @@
+import Post from "./Post";
+
 import usePosts from "./usePosts";
 
 import "./App.css";
@@ -16,16 +18,16 @@ const App = () => {
   return (
     <div className="app">
       {posts.map((post) => (
-        <article key={post.id}>
-          <h2>{post.title}</h2>
-          <span className="by">by User #{post.userId}</span>
-          <p>{post.body}</p>
-          <div className="votes">
-            <span>0 votes</span>
-            <button>Vote up</button>
-            <button>Vote down</button>
-          </div>
-        </article>
+        <Post
+          key={post.id}
+          title={post.title}
+          userId={post.userId}
+          votes={0}
+          onVoteUp={() => {}}
+          onVoteDown={() => {}}
+        >
+          {post.body}
+        </Post>
       ))}
     </div>
   );
