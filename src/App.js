@@ -1,22 +1,17 @@
-import { useEffect, useState } from "react";
+import usePosts from "./usePosts";
+
 import "./App.css";
 
 const App = () => {
-  const [arePostsLoading, setArePostsLoading] = useState(false);
-  const [posts, setPosts] = useState([]);
+  const { posts, arePostsLoading } = usePosts();
 
-  useEffect(() => {
-    setArePostsLoading(true);
-
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.json())
-      .then((result) => {
-        setPosts(result);
-        setArePostsLoading(false);
-      });
-  }, []);
-
-  console.log({ posts, arePostsLoading });
+  if (arePostsLoading) {
+    return (
+      <div className="app">
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="app">
