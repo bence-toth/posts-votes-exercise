@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [arePostsLoading, setArePostsLoading] = useState(false);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    setArePostsLoading(true);
+
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.json())
+      .then((result) => {
+        setPosts(result);
+        setArePostsLoading(false);
+      });
+  }, []);
+
+  console.log({ posts, arePostsLoading });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      {posts.map((post) => (
+        <article key={post.id}>
+          <h2>{post.title}</h2>
+          <span className="by">by User #{post.userId}</span>
+          <p>{post.body}</p>
+          <div className="votes">
+            <span>0 votes</span>
+            <button>Vote up</button>
+            <button>Vote down</button>
+          </div>
+        </article>
+      ))}
     </div>
   );
-}
+};
 
 export default App;
