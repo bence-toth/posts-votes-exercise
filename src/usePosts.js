@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import usePostVotes from "./usePostVotes";
 
 const usePosts = () => {
   const [arePostsLoading, setArePostsLoading] = useState(false);
   const [posts, setPosts] = useState([]);
+
+  const { postVotes, voteUpPost, voteDownPost } = usePostVotes();
 
   useEffect(() => {
     setArePostsLoading(true);
@@ -15,7 +18,7 @@ const usePosts = () => {
       });
   }, []);
 
-  return { posts, arePostsLoading };
+  return { posts, arePostsLoading, voteUpPost, voteDownPost };
 };
 
 export default usePosts;
